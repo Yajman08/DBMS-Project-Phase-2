@@ -161,7 +161,7 @@ function handleBooking(e) {
     
   };
 
-  fetch('http://localhost:3000/api/book', {
+  fetch('http://localhost:3000/api/book', { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -173,3 +173,46 @@ function handleBooking(e) {
     })
     .catch(err => console.error('Booking failed:', err));
 }
+
+function searchGuestByPhone() {
+  const phone = document.getElementById('searchGuestPhone').value.trim();
+  const resultSpan = document.getElementById('guestVisitResult');
+  if (!phone) {
+    resultSpan.textContent = "Please enter a phone number.";
+    return;
+  }
+  resultSpan.textContent = "Searching...";
+
+  fetch(`http://localhost:3000/api/guest/total-visits?phone=${encodeURIComponent(phone)}`)
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.json();
+    })
+    .then(data => {
+      if (data && data.name) {
+        resultSpan.textContent = `Name: ${data.name} | Total Visits: ${data.totalVisits}`;
+      } else {
+        resultSpan.textContent = "Guest not found.";
+      }
+    })
+    .catch(() => {
+      resultSpan.textContent = "Error fetching guest info.";
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      // Change icon
+      if (body.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = '<i data-lucide="sun"></i>';
+      } else {
+        themeToggle.innerHTML = '<i data-lucide="moon"></i>';
+      }
+      if (window.lucide) lucide.createIcons();
+    });
+  }
+});

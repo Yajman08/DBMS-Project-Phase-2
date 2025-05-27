@@ -72,6 +72,32 @@ app.post('/api/book', (req, res) => {
   });
 });
 
+// ROUTE: Get total visits by phone number
+app.get('/api/guest/total-visits', (req, res) => {
+  const phone = req.query.phone;
+  if (!phone) {
+    return res.status(400).json({ error: 'Phone number required' });
+  }
+
+  const query = 'SELECT full_name, total_visits FROM guests WHERE phone_number = ? ORDER BY guest_id DESC LIMIT 1';
+  db.query(query, [phone], (err, results) => {
+    if (err) {
+      console.error('Error fetching total visits:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    if (results.length > 0) {
+      res.json({
+        name: results[0].full_name,
+         totalVisits: results[0].total_visits 
+      });
+     
+    } else {
+      res.json({ name: null, totalVisits: 0 });
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+

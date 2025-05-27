@@ -10,22 +10,25 @@
 <body>
   <!-- Login Modal -->
   <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <h2>Login</h2>
+    <div class="modal-content hotel-login-modal">
+      <div class="login-header">
+        <h2>Welcome to Luxury Haven</h2>
+        <p class="login-subtitle">Sign in to continue your luxury experience</p>
+      </div>
       <div class="login-options">
         <button onclick="showLoginForm('guest')" class="active">Guest Login</button>
-        <button onclick="showLoginForm('staff')"  class="active">Staff Login</button>
+        <button onclick="showLoginForm('staff')" class="active">Staff Login</button>
       </div>
       <form id="loginForm">
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="loginEmail" required>
+          <label><i data-lucide="mail"></i> Email</label>
+          <input type="email" id="loginEmail" required placeholder="e.g. john@example.com">
         </div>
         <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="loginPassword" required>
+          <label><i data-lucide="lock"></i> Password</label>
+          <input type="password" id="loginPassword" required placeholder="Enter your password">
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="login-submit-btn">Login</button>
       </form>
     </div>
   </div>
@@ -48,6 +51,10 @@
           <div class="auth-buttons">
             <button onclick="showLoginModal()" class="login-btn">Login</button>
           </div>
+
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+  <i data-lucide="moon"></i>
+</button>
         </div>
 
         <button id="menuButton" class="menu-button" aria-label="Toggle menu">
@@ -55,28 +62,41 @@
         </button>
       </div>
     </div>
+     <!-- Animated New Features Marquee -->
+  <div class="hotel-marquee">
+    <div class="marquee-content">
+      <span>
+        ✨ Rooftop Infinity Pool &nbsp; | &nbsp; 🍽️ Michelin-Star Dining &nbsp; | &nbsp; 🛏️ Smart Room Controls &nbsp; | &nbsp; 🏋️ 24/7 Fitness Studio &nbsp; | &nbsp; 🚗 Complimentary Airport Pickup &nbsp; | &nbsp; 🌸 Spa & Wellness Retreat
+      </span>
+    </div>
+  </div>
   </nav>
 
-  <!-- Staff Dashboard (Hidden by default) -->
+  <!-- Staff Dashboard (Hotel-Themed) -->
   <div id="staffDashboard" class="dashboard hidden">
     <div class="container">
-      <h2>Staff Dashboard</h2>
+      <h2><i data-lucide="concierge-bell"></i> Staff Dashboard</h2>
       <div class="dashboard-grid">
         <div class="dashboard-card">
-          <h3>New Bookings</h3>
-          <div id="newBookings" class="booking-list"></div>
+          <h3><i data-lucide="calendar-plus"></i> New Bookings</h3>
+          <div id="newBookings" class="booking-list">
+            <!-- Example item -->
+            <!-- <div class="booking-item"><i data-lucide="user"></i> John Doe - Deluxe Room</div> -->
+          </div>
         </div>
         <div class="dashboard-card">
-          <h3>Check-ins Today</h3>
+          <h3><i data-lucide="log-in"></i> Check-ins Today</h3>
           <div id="checkIns" class="booking-list"></div>
         </div>
         <div class="dashboard-card">
-          <h3>Check-outs Today</h3>
+          <h3><i data-lucide="log-out"></i> Check-outs Today</h3>
           <div id="checkOuts" class="booking-list"></div>
         </div>
         <div class="dashboard-card">
-          <h3>Room Status</h3>
-          <div id="roomStatus" class="room-status-grid"></div>
+          <h3><i data-lucide="bed-double"></i> Room Status</h3>
+          <div id="roomStatus" class="room-status-grid">
+            <!-- <div class="room-status">101 - Occupied</div> -->
+          </div>
         </div>
       </div>
 
@@ -118,40 +138,45 @@
                 </div>
               </div>
         
-              <div class="guest-details">
-                <h3>Guest Details</h3>
+              <!-- Guest Details (Hotel-Themed, Enhanced) -->
+              <div class="guest-details" style="background: #f8f6f2; border-radius: 16px; box-shadow: 0 2px 12px #e0d7c6; padding: 32px; margin-bottom: 32px;">
+                <h3 style="color: #bfa76a; font-family: 'Georgia', serif; letter-spacing: 1px;">
+                  <i data-lucide="user" style="vertical-align: middle; margin-right: 8px;"></i>
+                  Guest Details
+                </h3>
                 <div class="form-grid">
                   <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" name="name" required>
+                    <label><i data-lucide="user"></i> Full Name</label>
+                    <input type="text" name="name" required placeholder="e.g. John Doe">
                   </div>
                   <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" required>
+                    <label><i data-lucide="mail"></i> Email</label>
+                    <input type="email" name="email" required placeholder="e.g. john@example.com">
                   </div>
                   <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" name="phone" required>
+                    <label><i data-lucide="phone"></i> Phone</label>
+                    <input type="tel" name="phone" required placeholder="e.g. +91 98765 43210">
                   </div>
                   <div class="form-group">
-                    <label>ID Type</label>
+                    <label><i data-lucide="id-card"></i> ID Type</label>
                     <select name="idType" required>
+                      <option value="" disabled selected>Select ID Type</option>
                       <option value="passport">Passport</option>
                       <option value="driving_license">Driving License</option>
                       <option value="national_id">National ID</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>ID Number</label>
-                    <input type="text" name="idNumber" required>
+                    <label><i data-lucide="hash"></i> ID Number</label>
+                    <input type="text" name="idNumber" required placeholder="Enter your ID number">
                   </div>
                   <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" name="address" required>
+                    <label><i data-lucide="map-pin"></i> Address</label>
+                    <input type="text" name="address" required placeholder="e.g. 123 Luxury St, Paradise City">
                   </div>
                   <div class="form-group">
-                    <label>Total Visits</label>
-                    <input type="text" name="total_visit" required>
+                    <label><i data-lucide="repeat"></i> Total Visits</label>
+                    <input type="number" min="1" name="total_visit" required placeholder="e.g. 1">
                   </div>
                 </div>
               </div>
@@ -194,17 +219,17 @@
     </div>
   </div>
 
-  <!-- User Dashboard (Hidden by default) -->
+  <!-- User Dashboard (Hotel-Themed) -->
   <div id="userDashboard" class="dashboard hidden">
     <div class="container">
-      <h2>My Bookings</h2>
+      <h2><i data-lucide="user"></i> My Bookings</h2>
       <div class="user-bookings">
         <div id="activeBookings" class="booking-list">
-          <h3>Active Bookings</h3>
+          <h3><i data-lucide="clock"></i> Active Bookings</h3>
           <!-- Active bookings will be populated here -->
         </div>
         <div id="bookingHistory" class="booking-list">
-          <h3>Booking History</h3>
+          <h3><i data-lucide="history"></i> Booking History</h3>
           <!-- Booking history will be populated here -->
         </div>
       </div>
@@ -213,14 +238,33 @@
 
   <!-- Main Content (Guest View) -->
   <main id="mainContent">
+    
+
     <!-- Hero Section -->
+
     <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Welcome to Luxury Haven</h1>
-        <p>Experience unparalleled luxury and comfort</p>
-        <a href="#rooms" class="cta-button">Explore Our Rooms</a>
-      </div>
-    </section>
+
+  <div class="hero-content">
+    <h1>Welcome to Luxury Haven</h1>
+    <p>Experience unparalleled luxury and comfort</p>
+    <a href="#rooms" class="cta-button">Explore Our Rooms</a>
+  </div>
+
+  
+  <!-- Search Guest Section INSIDE HERO -->
+  <div class="search-guest-section" style="margin: 32px auto 0 auto; background: #fffbe9cc; border-radius: 14px; box-shadow: 0 2px 12px #e0d7c6; padding: 24px; max-width: 420px;">
+    <h3 style="color: #bfa76a; font-family: 'Georgia', serif; margin-bottom: 12px; text-align:center;">
+      <i data-lucide="search"></i> Search Guest by Phone
+    </h3>
+    <div style="display: flex; gap: 12px; align-items: center; justify-content:center;">
+      <input type="tel" id="searchGuestPhone" placeholder="Enter guest phone number" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #e0d7c6; width: 180px;">
+      <button onclick="searchGuestByPhone()" style="background: #bfa76a; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-weight: bold; cursor: pointer;">Search</button>
+    </div>
+    <div style="margin-top:10px;text-align:center;">
+      <span id="guestVisitResult" style="color: #2d2d2d; font-weight: 600;"></span>
+    </div>
+  </div>
+</section>
   
     <!-- Rooms Section -->
     <section id="rooms" class="rooms">
@@ -347,40 +391,45 @@
             </div>
           </div>
     
-          <div class="guest-details">
-            <h3>Guest Details</h3>
+          <!-- Guest Details (Hotel-Themed, Enhanced) -->
+          <div class="guest-details" style="background: #f8f6f2; border-radius: 16px; box-shadow: 0 2px 12px #e0d7c6; padding: 32px; margin-bottom: 32px;">
+            <h3 style="color: #bfa76a; font-family: 'Georgia', serif; letter-spacing: 1px;">
+              <i data-lucide="user" style="vertical-align: middle; margin-right: 8px;"></i>
+              Guest Details
+            </h3>
             <div class="form-grid">
               <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" name="name" required>
+                <label><i data-lucide="user"></i> Full Name</label>
+                <input type="text" name="name" required placeholder="e.g. John Doe">
               </div>
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
+                <label><i data-lucide="mail"></i> Email</label>
+                <input type="email" name="email" required placeholder="e.g. john@example.com">
               </div>
               <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" name="phone" required>
+                <label><i data-lucide="phone"></i> Phone</label>
+                <input type="tel" name="phone" required placeholder="e.g. +91 98765 43210">
               </div>
               <div class="form-group">
-                <label>ID Type</label>
+                <label><i data-lucide="id-card"></i> ID Type</label>
                 <select name="idType" required>
+                  <option value="" disabled selected>Select ID Type</option>
                   <option value="passport">Passport</option>
                   <option value="driving_license">Driving License</option>
                   <option value="national_id">National ID</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>ID Number</label>
-                <input type="text" name="idNumber" required>
+                <label><i data-lucide="hash"></i> ID Number</label>
+                <input type="text" name="idNumber" required placeholder="Enter your ID number">
               </div>
               <div class="form-group">
-                <label>Address</label>
-                <input type="text" name="address" required>
+                <label><i data-lucide="map-pin"></i> Address</label>
+                <input type="text" name="address" required placeholder="e.g. 123 Luxury St, Paradise City">
               </div>
               <div class="form-group">
-                <label>Total Visits</label>
-                <input type="text" name="total_visit" required>
+                <label><i data-lucide="repeat"></i> Total Visits</label>
+                <input type="number" min="1" name="total_visit" required placeholder="e.g. 1">
               </div>
             </div>
           </div>
@@ -418,6 +467,10 @@
         </form>
       </div>
     </section>
+
+    <
+    
+  
     
     <script>
      const roomRates = {
@@ -440,11 +493,18 @@ function updateRate() {
 function updateTotal() {
   const roomType = document.getElementById("roomType").value;
   const guests = document.getElementById("guests").value;
+  // Get total visits value
+  const totalVisitInput = document.querySelector('input[name="total_visit"]');
+  let totalVisits = totalVisitInput ? parseInt(totalVisitInput.value) : 0;
 
   if (roomType && guests) {
-    const total = roomRates[roomType] * guests;
+    let total = roomRates[roomType] * guests;
 
-    // 👇 Store number only in input field (good for database)
+    // Apply 20% discount if total visits > 4
+    if (totalVisits > 4) {
+      total = total * 0.8;
+    }
+
     document.getElementById("totalAmount").value = total;
 
     // Optional: display formatted total for user somewhere else if you want
@@ -461,6 +521,18 @@ function payNow() {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Update total when Total Visits changes
+  const totalVisitInput = document.querySelector('input[name="total_visit"]');
+  if (totalVisitInput) {
+    totalVisitInput.addEventListener('input', updateTotal);
+  }
+  // Also update when room type or guests change
+  const roomTypeInput = document.getElementById('roomType');
+  const guestsInput = document.getElementById('guests');
+  if (roomTypeInput) roomTypeInput.addEventListener('change', updateTotal);
+  if (guestsInput) guestsInput.addEventListener('change', updateTotal);
+});
     </script>
     
   </main>
